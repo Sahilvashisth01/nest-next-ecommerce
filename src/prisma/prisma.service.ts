@@ -20,16 +20,19 @@ export class PrismaService
     });
   }
 
+  // Connect to the database when the module is initialized
   async onModuleInit() {
     await this.$connect();
     console.log('Database connected Successfully');
   }
 
+  // Disconnect from the database when the module is destroyed
   async onModuleDestroy() {
     await this.$disconnect();
     console.log('Database disconnected');
   }
 
+  // Utility method to clean the database (for testing purposes)
   async cleanDatabase() {
     if (process.env.NODE_ENV === 'production') {
       throw new Error('Cannot clean database in production environment');
